@@ -26,7 +26,7 @@ class _NewPartnerState extends State<newPartner> {
 
 Future<bool> newPartner() async {
   final url = Uri.parse(
-  'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/partner/add-partner'
+  'https://app.sirana-milka:8081/milkaservice/api/partner/add-partner'
 );
 
 final partnerName = nameController.text.trim();

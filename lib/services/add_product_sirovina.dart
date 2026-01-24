@@ -26,7 +26,7 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
 
   Future<void> addProduct() async {
     final url = Uri.parse(
-    'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/add-item'
+    'https://app.sirana-milka:8081/milkaservice/api/add-item'
   );
 
   final ID = int.tryParse(IDProizvodaController.text) ?? 0;

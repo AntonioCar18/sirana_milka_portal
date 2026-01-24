@@ -35,7 +35,7 @@ class _StorageState extends State<Storage> {
       };
 
       final url = Uri.https(
-        '7cf590e4f8a3.ngrok-free.app',
+        'app.sirana-milka:8081',
         '/milkaservice/api/search-items',
         queryParams,
       );
@@ -362,7 +362,7 @@ class _StorageState extends State<Storage> {
                                         children: [
                                           Text(product['quantity'].toString()),
                                           SizedBox(width: 5),
-                                          Text(product['measureUnit'] ?? ''),
+                                          Text(product['fit '] ?? ''),
                                         ],
                                       )),
                                       DataCell(Container(
