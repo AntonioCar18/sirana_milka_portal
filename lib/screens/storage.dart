@@ -167,8 +167,8 @@ class _StorageState extends State<Storage> {
                   backgroundImage: AssetImage('Login_Logo.png'),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  'Bok, Domagoj',
+                Text(
+                  'Bok, ${TokenHelper.getNameFromToken(AuthService.token ?? "") ?? "Korisnik"}',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xff034C7D),

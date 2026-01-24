@@ -124,7 +124,7 @@ class _PartnersState extends State<Partners> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Bok, Domagoj',
+                  'Bok, ${TokenHelper.getNameFromToken(AuthService.token ?? "") ?? "Korisnik"}',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xff034C7D),

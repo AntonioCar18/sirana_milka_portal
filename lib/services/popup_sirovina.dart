@@ -75,15 +75,6 @@ class _PopupSirovinaState extends State<PopupSirovina> {
     final novaKolicina = int.tryParse(novaKolicinaController.text) ?? 0;
     final aktualnaKolicina = int.tryParse(aktualnoStanjeController.text) ?? 0;
 
-    if(novaKolicina<=0){
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Unesite količinu koja je veća od 0!'),
-        ),
-      );
-      return false;
-    }
-
     final Map<String, dynamic> payload ={
       "itemId": widget.sirovinaData['itemId'],
       "additionalQuantity": novaKolicina,

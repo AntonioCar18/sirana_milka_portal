@@ -3,8 +3,10 @@ import 'package:sirana_milka/screens/login_screen.dart';
 import 'package:sirana_milka/screens/dashboard.dart';
 import 'package:sirana_milka/screens/storage.dart';
 import 'package:sirana_milka/screens/partners.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 

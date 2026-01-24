@@ -111,7 +111,7 @@ class _PopupProductState extends State<PopupProduct> {
   }
 
   Future<void> updateItemQuantity(int? id, int? newQuantity, int? outQuantity, List<Map<String, dynamic>> components) async {
-    final url = Uri.parse('https://70fe22bcbba2.ngrok-free.app/milkaservice/api/stock/add-products-to-stock');
+    final url = Uri.parse('https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/stock/add-products-to-stock');
 
     try {
       final response = await http.post(
@@ -218,7 +218,7 @@ class _PopupProductState extends State<PopupProduct> {
       backgroundColor: Colors.white,
       title: Padding(
         padding: const EdgeInsets.only(top: 20.0, left: 20.0),
-        child: Text('Ažuriranje zalihe - ', style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Inter',),),
+        child: Text('Ažuriranje zalihe - ${widget.product!['itemName']}', style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Inter',),),
       ),
       content: SizedBox(
         width: 900,
