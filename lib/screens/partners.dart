@@ -19,7 +19,7 @@ class _PartnersState extends State<Partners> {
   Future<void> fetchPartners() async {
     
     final url = Uri.parse(
-      'https://2e163d7a9b86.ngrok-free.app/milkaservice/api/partner/all-partners'
+      'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/partner/all-partners'
     );
     
     try{

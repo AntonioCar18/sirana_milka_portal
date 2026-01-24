@@ -35,7 +35,7 @@ class _EditPartnerState extends State<EditPartner> {
     final partnerId = widget.partner?['id'];
 
     final url = Uri.parse(
-    'https://2e163d7a9b86.ngrok-free.app/milkaservice/api/partner/update-partner'
+    'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/partner/update-partner'
   ).replace(queryParameters: {
     'id': partnerId.toString(), 
   });
@@ -96,7 +96,7 @@ class _EditPartnerState extends State<EditPartner> {
   Future<bool> deletePartner(int? id) async {
     if (id == null) return false;
     final url = Uri.parse(
-    'https://2e163d7a9b86.ngrok-free.app/milkaservice/api/partner/delete-partner'
+    'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/partner/delete-partner'
   ).replace(queryParameters: {
     'id': id.toString(),});
 

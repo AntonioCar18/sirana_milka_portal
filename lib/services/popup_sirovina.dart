@@ -28,7 +28,7 @@ class _PopupSirovinaState extends State<PopupSirovina> {
   }
 
   Future<void> deleteItem(int? id, String? type) async {
-    final url = Uri.parse('https://678175e457ab.ngrok-free.app/milkaservice/api/delete');
+    final url = Uri.parse('https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/delete');
 
     try {
       final response = await http.delete(
@@ -71,7 +71,7 @@ class _PopupSirovinaState extends State<PopupSirovina> {
   }
 
   Future<bool> updateStatus() async{
-    final url = Uri.parse('https://678175e457ab.ngrok-free.app/milkaservice/api/add-resource-quantity');
+    final url = Uri.parse('https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/add-resource-quantity');
     final novaKolicina = int.tryParse(novaKolicinaController.text) ?? 0;
     final aktualnaKolicina = int.tryParse(aktualnoStanjeController.text) ?? 0;
 

@@ -32,7 +32,7 @@ class _DashboardState extends State<Dashboard> {
 }
 
     final url = Uri.parse(
-        'https://678175e457ab.ngrok-free.app/milkaservice/api/partner/total-partners');
+        'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/partner/total-partners');
     try {
       final response = await http.get(
         url,
@@ -70,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
   return; // ne šalji request
 }
     final url = Uri.parse(
-        'https://678175e457ab.ngrok-free.app/milkaservice/api/total-no-of-products');
+        'https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/total-no-of-products');
     try {
       final response = await http.get(
         url,
@@ -207,7 +207,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Bok, Domagoj',
+                  'Bok, ${TokenHelper.getNameFromToken(AuthService.token ?? "") ?? "Korisnik"}',
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xff034C7D),

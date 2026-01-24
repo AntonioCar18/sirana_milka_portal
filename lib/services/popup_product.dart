@@ -65,7 +65,7 @@ class _PopupProductState extends State<PopupProduct> {
       };
 
       final url = Uri.https(
-        '678175e457ab.ngrok-free.app',
+        '7cf590e4f8a3.ngrok-free.app',
         '/milkaservice/api/search-resources',
         queryParams,
       );
@@ -111,7 +111,7 @@ class _PopupProductState extends State<PopupProduct> {
   }
 
   Future<void> updateItemQuantity(int? id, int? newQuantity, int? outQuantity, List<Map<String, dynamic>> components) async {
-    final url = Uri.parse('https://678175e457ab.ngrok-free.app/milkaservice/api/stock/add-products-to-stock');
+    final url = Uri.parse('https://70fe22bcbba2.ngrok-free.app/milkaservice/api/stock/add-products-to-stock');
 
     try {
       final response = await http.post(
@@ -152,7 +152,7 @@ class _PopupProductState extends State<PopupProduct> {
   }
 
   Future<void> deleteItem(int? id, String? type) async {
-    final url = Uri.parse('https://678175e457ab.ngrok-free.app/milkaservice/api/delete');
+    final url = Uri.parse('https://7cf590e4f8a3.ngrok-free.app/milkaservice/api/delete');
 
     try {
       final response = await http.delete(
@@ -604,8 +604,8 @@ return Padding(
           };
         }).toList();
 
-        int? newQuantity = int.tryParse(novaKolicinaController.text);
-        int? outQuantity = int.tryParse(izdanaKolicinaController.text);
+        int? newQuantity = int.tryParse(novaKolicinaController.text) ?? 0;
+        int? outQuantity = int.tryParse(izdanaKolicinaController.text) ?? 0;
 
         updateItemQuantity(widget.product!['itemId'], newQuantity, outQuantity, components).then((_) {
           if(!mounted) return;

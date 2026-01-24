@@ -35,7 +35,7 @@ class _StorageState extends State<Storage> {
       };
 
       final url = Uri.https(
-        '678175e457ab.ngrok-free.app',
+        '7cf590e4f8a3.ngrok-free.app',
         '/milkaservice/api/search-items',
         queryParams,
       );
@@ -256,8 +256,8 @@ class _StorageState extends State<Storage> {
                         onPressed: () {
                           showDialog(
                           context: context,
-                          builder: (context) => AddProductSirovina(),
-                          );
+                          builder: (context) => AddProductSirovina(
+                          ));
                         },
                         child: Text(
                           '+ Dodaj novi proizvod',
