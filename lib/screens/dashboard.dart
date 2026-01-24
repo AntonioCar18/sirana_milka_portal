@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sirana_milka/services/auth_service.dart';
 import 'package:sirana_milka/services/bar_chart.dart';
+import 'package:sirana_milka/services/sidebar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -102,43 +103,6 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  Widget sidebarItem({
-    required IconData icon,
-    required String title,
-    required int index,
-    required VoidCallback onTap,
-  }) {
-    bool isSelected = selectedIndex == index;
-    return InkWell(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-        onTap();
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        decoration: BoxDecoration(
-          color: isSelected ? Color(0xffACD6F2) : Colors.white,
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, size: 24, color: isSelected ? Color(0xff016CB5) : Colors.black),
-            SizedBox(width: 10),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 16,
-                color: isSelected ? Color(0xff016CB5) : Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget dashboardCard({required String title, required String value}) {
     return Container(
       decoration: BoxDecoration(
@@ -194,83 +158,7 @@ class _DashboardState extends State<Dashboard> {
       body: Row(
         children: [
           // Sidebar
-          Container(
-            width: 250,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.white,
-            padding: EdgeInsets.all(25),
-            child: Column(
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage('Login_Logo.png'),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Bok, ${TokenHelper.getNameFromToken(AuthService.token ?? "") ?? "Korisnik"}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xff034C7D),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 15),
-                sidebarItem(
-                  icon: Icons.dashboard,
-                  title: "Nadzorna ploča",
-                  index: 0,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, 'dashboard');
-                  },
-                ),
-                SizedBox(height: 5),
-                sidebarItem(
-                  icon: Icons.storage,
-                  title: "Skladište",
-                  index: 1,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, 'storage');
-                  },
-                ),
-                SizedBox(height: 5),
-                sidebarItem(
-                  icon: Icons.people,
-                  title: "Partneri",
-                  index: 2,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, 'partners');
-                  },
-                ),
-                SizedBox(height: 5),
-                sidebarItem(
-                  icon: Icons.list_alt,
-                  title: "Narudžbe",
-                  index: 3,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, '/ogin');
-                  },
-                ),
-                SizedBox(height: 5),
-                sidebarItem(
-                  icon: Icons.money,
-                  title: "Financije",
-                  index: 4,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, '/logn');
-                  },
-                ),
-                SizedBox(height: 5),
-                sidebarItem(
-                  icon: Icons.logout,
-                  title: "Odjava",
-                  index: 5,
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, 'login');
-                  },
-                ),
-              ],
-            ),
-          ),
+          SidebarMenu(selectedIndex: 0),
 
           // Glavni dio dashboard-a
           Expanded(

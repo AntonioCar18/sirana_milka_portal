@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'login',
+      initialRoute: '/',
       routes: {
-        'login': (context) => LoginScreen(),
-        'dashboard': (context) => Dashboard(),
-        'storage': (context) => Storage(),
-        'partners': (context) => Partners(),
+        '/': (context) => LoginScreen(),
+        '/dashboard': (context) => Dashboard(),
+        '/storage': (context) => Storage(),
+        '/partners': (context) => Partners(),
       },
     );
   }

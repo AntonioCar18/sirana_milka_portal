@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final token = jsonDecode(response.body)["token"];
       AuthService.setToken(token);
-      Navigator.pushNamed(context, "dashboard");
+      Navigator.pushNamed(context, "/dashboard");
 
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
