@@ -33,7 +33,7 @@ class _DashboardState extends State<Dashboard> {
 }
 
     final url = Uri.parse(
-        'https://app.sirana-milka:8081/milkaservice/api/partner/total-partners');
+        'https://app.sirana-milka.hr:8081/milkaservice/api/partner/total-partners');
     try {
       final response = await http.get(
         url,
@@ -71,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
   return; // ne šalji request
 }
     final url = Uri.parse(
-        'https://app.sirana-milka:8081/milkaservice/api/total-no-of-products');
+        'https://app.sirana-milka.hr:8081/milkaservice/api/total-no-of-products');
     try {
       final response = await http.get(
         url,

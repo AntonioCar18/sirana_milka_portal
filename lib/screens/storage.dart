@@ -36,7 +36,7 @@ class _StorageState extends State<Storage> {
       };
 
       final url = Uri.https(
-        'app.sirana-milka:8081',
+        'app.sirana-milka.hr:8081',
         '/milkaservice/api/search-items',
         queryParams,
       );
