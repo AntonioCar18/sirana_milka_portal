@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future <void> login() async{
     final url = Uri.parse(
-      'https://app.sirana-milka.hr:8080/auth/api/login'
+      'http://46.224.225.16:8080/auth/api/login'
     );
 
     final username = emailController.text.trim();

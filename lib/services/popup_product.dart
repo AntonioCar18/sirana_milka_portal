@@ -64,7 +64,7 @@ class _PopupProductState extends State<PopupProduct> {
         'searchQuery': searchQuery
       };
 
-      final url = Uri.https(
+      final url = Uri.http(
         'app.sirana-milka.hr:8081',
         '/milkaservice/api/search-resources',
         queryParams,
@@ -111,7 +111,7 @@ class _PopupProductState extends State<PopupProduct> {
   }
 
   Future<void> updateItemQuantity(int? id, int? newQuantity, int? outQuantity, List<Map<String, dynamic>> components) async {
-    final url = Uri.parse('https://app.sirana-milka.hr:8081/milkaservice/api/stock/add-products-to-stock');
+    final url = Uri.parse('http://app.sirana-milka.hr:8081/milkaservice/api/stock/add-products-to-stock');
 
     try {
       final response = await http.post(
@@ -152,7 +152,7 @@ class _PopupProductState extends State<PopupProduct> {
   }
 
   Future<void> deleteItem(int? id, String? type) async {
-    final url = Uri.parse('https://app.sirana-milka.hr:8081/milkaservice/api/delete');
+    final url = Uri.parse('http://app.sirana-milka.hr:8081/milkaservice/api/delete');
 
     try {
       final response = await http.delete(

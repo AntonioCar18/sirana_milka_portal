@@ -35,7 +35,7 @@ class _EditPartnerState extends State<EditPartner> {
     final partnerId = widget.partner?['id'];
 
     final url = Uri.parse(
-    'https://app.sirana-milka.hr:8081/milkaservice/api/partner/update-partner'
+    'http://app.sirana-milka.hr:8081/milkaservice/api/partner/update-partner'
   ).replace(queryParameters: {
     'id': partnerId.toString(), 
   });
@@ -96,7 +96,7 @@ class _EditPartnerState extends State<EditPartner> {
   Future<bool> deletePartner(int? id) async {
     if (id == null) return false;
     final url = Uri.parse(
-    'https://app.sirana-milka.hr:8081/milkaservice/api/partner/delete-partner'
+    'http://app.sirana-milka.hr:8081/milkaservice/api/partner/delete-partner'
   ).replace(queryParameters: {
     'id': id.toString(),});
 
