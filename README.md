@@ -12,10 +12,10 @@ A professional Flutter-based enterprise solution designed for Sirana Milka to st
 
 # Tech Stack:
 
-Frontend: Flutter Web (Stable)
-Server & Hosting: Hetzner Cloud / Nginx
-Backend: REST API
-Database: PostgreSQL
+- Frontend: Flutter Web (Stable)
+- Server & Hosting: Hetzner Cloud / Nginx
+- Backend: REST API
+- Database: PostgreSQL
 
 **Getting Started**
 
