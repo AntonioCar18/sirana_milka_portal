@@ -35,6 +35,21 @@ final partnerOIB = oibController.text.trim();
 final partnerContactPerson = contactPersonController.text.trim();
 final partnerPhone = phoneController.text.replaceAll(' ', '');
 
+if (partnerName.isEmpty ||
+        partnerPhone.isEmpty ||
+        partnerOIB.isEmpty ||
+        partnerContactPerson.isEmpty ||
+        partnerPhone.isEmpty) {
+      if(mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Molimo ispunite sva polja prije slanja.'),
+          ),
+        );
+      }
+      return false;
+    }
+
 final Map<String, dynamic> payload ={
   "partnerName": partnerName,
   "address": partnerAddress,

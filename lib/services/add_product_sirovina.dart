@@ -24,7 +24,7 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
     super.initState();
   }
 
-  Future<void> addProduct() async {
+  Future<bool> addProduct() async {
     final url = Uri.parse(
     'http://app.sirana-milka.hr:8081/milkaservice/api/add-item'
   );
@@ -40,6 +40,22 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
         ),
       );
     }
+
+  if (ID == 0 ||
+      title.isEmpty ||
+      actualstate < 0 ||
+      selectedMjernaJedinica == null || 
+      (!isSelected[0] && !isSelected[1])
+      ) {
+    if(mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Molimo ispunite sva polja prije slanja.'),
+        ),
+      );
+    }
+    return false;
+  }
 
   final Map<String, dynamic> payload ={
       "productId": ID,
@@ -67,14 +83,17 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
         selectedMjernaJedinica = null;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Uspješno ste ažurirali stanje sirovine'),
+            content: Text('Uspješno ste dodali novi proizvod/sirovinu!'),
           ),
         );
       }
 
+      return true;
+
   } catch (e) {
       print('Error: $e');
     }
+    return false;
   }
 
   @override
@@ -240,10 +259,10 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
       child: const Text('Zatvori', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
       ),
     ElevatedButton(
-      onPressed: () async {
-        await addProduct();
-        if(mounted){
-        Navigator.pop(context);
+       onPressed: () async {
+       bool value = await addProduct();
+        if(value && mounted){
+        Navigator.pop(context, true);
       }
       },
       style: ButtonStyle(

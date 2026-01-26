@@ -54,6 +54,21 @@ class _EditPartnerState extends State<EditPartner> {
     "phoneNumber": partnerPhone,
     };
 
+    if (partnerName.isEmpty ||
+        partnerPhone.isEmpty ||
+        partnerOIB.isEmpty ||
+        partnerContactPerson.isEmpty ||
+        partnerPhone.isEmpty) {
+      if(mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Molimo ispunite sva polja prije ažuriranja partnera.'),
+          ),
+        );
+      }
+      return false;
+    }
+
     try{
       final response = await http.put(
         url,

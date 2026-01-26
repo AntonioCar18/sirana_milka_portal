@@ -110,8 +110,37 @@ class _PopupProductState extends State<PopupProduct> {
     }
   }
 
-  Future<void> updateItemQuantity(int? id, int? newQuantity, int? outQuantity, List<Map<String, dynamic>> components) async {
+  Future<bool> updateItemQuantity(int? id, int? newQuantity, int? outQuantity, List<Map<String, dynamic>> components) async {
     final url = Uri.parse('http://app.sirana-milka.hr:8081/milkaservice/api/stock/add-products-to-stock');
+
+    // 1. Provjera da barem nešto radimo
+  if ((newQuantity == null || newQuantity == 0) && (outQuantity == null || outQuantity == 0)) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Molimo unesite novu ili izdanu količinu.')),
+    );
+    return false;
+  }
+
+  // 2. Osnovna provjera negativa
+  if ((newQuantity ?? 0) < 0 || (outQuantity ?? 0) < 0) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Kolicina ne može biti negativna.')),
+    );
+    return false;
+  }
+
+  // 3. LOGIČKA PROMJENA: Provjera sirovina samo ako se dodaje NOVA količina (proizvodnja)
+  if ((newQuantity ?? 0) > 0) {
+    if (components.isEmpty || components.any((component) => component['idSirovine'] == null || component['potrosenaKolicina'] <= 0)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Prilikom dodavanja nove količine, morate unijeti valjane sirovine.')),
+      );
+      return false;
+    }
+  } else {
+    // Ako je samo izlaz (prodaja), šaljemo praznu listu sirovina serveru
+    components = [];
+  }
 
     try {
       final response = await http.post(
@@ -128,7 +157,7 @@ class _PopupProductState extends State<PopupProduct> {
           "sirovine": components,
         }),
       );
-      if (!mounted) return;
+      if (!mounted) return false;
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -148,7 +177,9 @@ class _PopupProductState extends State<PopupProduct> {
           content: Text('Došlo je do greške prilikom ažuriranja količine.'),
         ),
       );
+      return false;
     }
+    return true;
   }
 
   Future<void> deleteItem(int? id, String? type) async {
@@ -596,7 +627,7 @@ return Padding(
       child: const Text('Zatvori', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
       ),
     ElevatedButton(
-      onPressed: () {
+      onPressed: () async {
         List<Map<String, dynamic>> components = dynamicComponents.map((c) {
           return {
             'idSirovine': c['id'],
@@ -607,10 +638,16 @@ return Padding(
         int? newQuantity = int.tryParse(novaKolicinaController.text) ?? 0;
         int? outQuantity = int.tryParse(izdanaKolicinaController.text) ?? 0;
 
-        updateItemQuantity(widget.product!['itemId'], newQuantity, outQuantity, components).then((_) {
-          if(!mounted) return;
-          Navigator.pop(context, true); // Zatvori dijalog nakon ažuriranja
-        });
+        bool success = await updateItemQuantity(
+          widget.product!['itemId'],
+          newQuantity,
+          outQuantity,
+          components,
+        );
+
+        if(success && mounted){
+          Navigator.pop(context, true);
+        }
       },
       style: ButtonStyle(
         backgroundColor: WidgetStatePropertyAll(Color(0xff016CB5)),

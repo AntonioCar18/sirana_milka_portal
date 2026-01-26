@@ -142,11 +142,14 @@ class _StorageState extends State<Storage> {
                               EdgeInsets.symmetric(
                                   horizontal: 50, vertical: 25)),
                         ),
-                        onPressed: () {
-                          showDialog(
+                        onPressed: () async{
+                          final result = await showDialog(
                           context: context,
-                          builder: (context) => AddProductSirovina(
-                          ));
+                          builder: (context) => AddProductSirovina(),
+                        );
+                        if(result == true && mounted){
+                          searchProducts();
+                        }
                         },
                         child: Text(
                           '+ Dodaj novi proizvod',
@@ -251,7 +254,7 @@ class _StorageState extends State<Storage> {
                                         children: [
                                           Text(product['quantity'].toString()),
                                           SizedBox(width: 5),
-                                          Text(product['fit '] ?? ''),
+                                          Text(product['measureUnit'] ?? ''),
                                         ],
                                       )),
                                       DataCell(Container(
