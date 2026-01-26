@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sirana_milka/services/add_partner.dart';
 import 'package:sirana_milka/services/auth_service.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:sirana_milka/services/edit_partner.dart';
 import 'package:sirana_milka/services/sidebar.dart';
+import 'package:sirana_milka/services/fetch_partners.dart';
 
 class Partners extends StatefulWidget {
   const Partners({super.key});
@@ -18,51 +17,22 @@ class _PartnersState extends State<Partners> {
   List<dynamic> partners = [];
 
   Future<void> fetchPartners() async {
-    
-    final url = Uri.parse(
-      'http://app.sirana-milka.hr:8081/milkaservice/api/partner/all-partners'
-    );
-    
-    try{
-      final response = await http.get(
-        url,
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true",
-          "Authorization": "Bearer ${AuthService.token}",
-        },
-      );
-
-    if (response.statusCode == 200) {
-  // 1. Dekodiraj body kao Mapu (jer počinje s { )
-  final decodedBody = utf8.decode(response.bodyBytes);
-  final Map<String, dynamic> responseData = jsonDecode(decodedBody);
-
-  // 2. Izvuci listu partnera koristeći ključ "partners"
-  final List<dynamic> data = responseData['partners'];
-
-  setState(() {
-    partners = data.map((partner) => {
-      'id': partner['id'],
-      'name': partner['partnerName'] ?? '',
-      'oib': partner['oib'] ?? '',
-      'email': partner['emailAddress'] ?? '',
-      'address': partner['address'] ?? '',
-      'contact_person': partner['contactPerson'] ?? '',
-      'phone': partner['phoneNumber'] ?? '',
-    }).toList();
-  });
-}
+    try {
+      String? token = AuthService.token!;
+      if (token != null) {
+        List<dynamic> fetchedPartners = await FetchPartners.getPartners(token);
+        if (mounted) {
+          setState(() {
+            partners = fetchedPartners;
+          });
+        }
+      }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Došlo je do pogreške pri dohvaćanju partnera: $e')),
-      );
-      return;
+      debugPrint('Error loading partners: $e');
     }
   }
 
-
-   @override
+  @override
   void initState() {
     super.initState();
     fetchPartners();
@@ -102,14 +72,14 @@ class _PartnersState extends State<Partners> {
                               EdgeInsets.symmetric(
                                   horizontal: 50, vertical: 25)),
                         ),
-                        onPressed: () async{
-                          await
-                          showDialog(
+                        onPressed: () async {
+                          await showDialog(
                             context: context,
                             builder: (context) => newPartner(),
                           );
-                          if(mounted)
-                          fetchPartners();
+                          if (mounted) {
+                            fetchPartners();
+                          }
                         },
                         child: Text(
                           '+ Dodaj novog partnera',
@@ -164,7 +134,7 @@ class _PartnersState extends State<Partners> {
                                     ],
                                   )),
                                     DataCell(InkWell(
-                                    onTap: () async{
+                                    onTap: () async {
                                       final bool? result = await showDialog(context: context, builder: (context) => EditPartner(partner: partner));
                                       if (result == true) {
                                         fetchPartners();

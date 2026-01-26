@@ -104,13 +104,14 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Widget dashboardCard({required String title, required String value}) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(25, 15, 25, 0),
+        padding: screenWidth > 1560 ? EdgeInsets.fromLTRB(40, 15, 25, 0) : EdgeInsets.fromLTRB(15, 10, 15, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -122,7 +123,7 @@ class _DashboardState extends State<Dashboard> {
                 fontFamily: 'Inter',
               ),
             ),
-            SizedBox(height: 15),
+            screenWidth > 1560 ? SizedBox(height: 25) : SizedBox(height: 20),
             Center(
               child: Text(
                 value,
