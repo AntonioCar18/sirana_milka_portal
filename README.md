@@ -6,9 +6,9 @@ A professional Flutter-based enterprise solution designed for Sirana Milka to st
 
 # Core Features:
 
-Inventory Tracking: Real-time monitoring of goods flowing in and out of the warehouse.
-Logistics Control: Comprehensive management of stock levels and distribution.
-Business Analytics: Visualized data insights to track income, expenses, and operational efficiency.
+- Inventory Tracking: Real-time monitoring of goods flowing in and out of the warehouse.
+- Logistics Control: Comprehensive management of stock levels and distribution.
+- Business Analytics: Visualized data insights to track income, expenses, and operational efficiency.
 
 # Tech Stack:
 
