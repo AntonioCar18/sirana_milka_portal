@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sirana_milka/services/auth_service.dart';
 import 'dart:convert';
+import 'error.dart';
 
 class PopupProduct extends StatefulWidget {
   final Map<String, dynamic>? product;
@@ -127,6 +128,28 @@ class _PopupProductState extends State<PopupProduct> {
       SnackBar(content: Text('Kolicina ne može biti negativna.')),
     );
     return false;
+  }
+
+  // Doradi kod koji će provjeravati je li stanje sirovine dovoljno da se toliko proizvoda proizvde.
+  // Npr. ako za 4 maslaca treba 20L mlijeka, a mi imamo 19L, blokiraj akciju i ispiši da ne postoje dovoljne količine mlijeka
+
+  if((newQuantity ?? 0) > 0){
+    for (var comp in dynamicComponents){
+      var qController = comp['quantityController'] as TextEditingController?;
+      var nController = comp['nameController'] as TextEditingController?;
+      
+      if (qController == null) continue; // Preskoči ako kontroler ne postoji
+
+      double uneseno = double.tryParse(qController.text) ?? 0;
+      double dostupno = double.tryParse(comp['availableQuantity']?.toString() ?? '0') ?? 0;
+      String naziv = nController?.text ?? "Nepoznata sirovina";
+
+      if (uneseno > dostupno) {
+        
+        pokaziGresku(context, "Nema dovoljno sirovine: $naziv");
+        return false; // Zaustavlja slanje jer nema dovoljno sirovine
+      }
+    }
   }
 
   // 3. LOGIČKA PROMJENA: Provjera sirovina samo ako se dodaje NOVA količina (proizvodnja)
@@ -565,6 +588,7 @@ return Padding(
                     setState(() {
                       nameController.text = item['itemName'];
                       component['id'] = item['itemId'];
+                      component['availableQuantity'] = item['quantity'];
                       searchResults = [];
                       activeDropdownIndex = -1;
                     });

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'auth_service.dart'; // Add this import - adjust the path if your AuthService is in a different location
+import 'warning.dart';
 
 class AddProductSirovina extends StatefulWidget {
   const AddProductSirovina({super.key});
@@ -34,11 +35,7 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
   final actualstate = int.tryParse(aktualnoStanjeController.text) ?? 0;
 
   if(actualstate<0){
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Unesite količinu koja je veća ili jednaka 0!'),
-        ),
-      );
+      pokaziUpozorenje(context, 'Vrijednost stvarnog stanja mora biti veća od 0.');
     }
 
   if (ID == 0 ||
@@ -48,11 +45,7 @@ class _AddProductSirovinaState extends State<AddProductSirovina> {
       (!isSelected[0] && !isSelected[1])
       ) {
     if(mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Molimo ispunite sva polja prije slanja.'),
-        ),
-      );
+      pokaziUpozorenje(context, 'Potrebno je popuniti sva polja prije spremanja.');
     }
     return false;
   }

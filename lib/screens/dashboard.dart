@@ -111,7 +111,7 @@ class _DashboardState extends State<Dashboard> {
         borderRadius: BorderRadius.circular(25),
       ),
       child: Padding(
-        padding: screenWidth > 1560 ? EdgeInsets.fromLTRB(40, 15, 25, 0) : EdgeInsets.fromLTRB(15, 10, 15, 0),
+        padding: screenWidth > 1560 ? EdgeInsets.fromLTRB(40, 15, 25, 0) : EdgeInsets.fromLTRB(25, 10, 25, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

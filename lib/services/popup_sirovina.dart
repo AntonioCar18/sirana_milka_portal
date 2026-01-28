@@ -256,7 +256,7 @@ class _PopupSirovinaState extends State<PopupSirovina> {
             ],
           ),
           SizedBox(height: 30.0,),
-          Text('Želite li urediti aktualno stanje proizvoda?', style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Inter',),),
+          Text('Želite li urediti aktualno stanje sirovine?', style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Inter',),),
           SizedBox(height: 20,),
           Row(
             children: [
@@ -329,7 +329,7 @@ class _PopupSirovinaState extends State<PopupSirovina> {
         backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 229, 132, 132)),
         padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 40, vertical: 20),),
       ), 
-    child: const Text('Obriši proizvod', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+    child: const Text('Obriši sirovinu', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
     ),
     TextButton(
       onPressed: () => Navigator.pop(context),

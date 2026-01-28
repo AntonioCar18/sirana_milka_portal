@@ -213,104 +213,106 @@ class _StorageState extends State<Storage> {
                             width: screenWidth,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(25),
-                              child: DataTable(
-                                headingRowColor:
-                                    WidgetStateProperty.all(Color(0xffF9FAFB)),
-                                columns: const [
-                                  DataColumn(
-                                      label: Text(
-                                    'ID Proizvoda',
-                                    textAlign: TextAlign.center,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Naziv proizvoda',
-                                    textAlign: TextAlign.center,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Količina',
-                                    textAlign: TextAlign.center,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Status',
-                                    textAlign: TextAlign.center,
-                                  )),
-                                  DataColumn(
-                                      label: Text(
-                                    'Akcija',
-                                    textAlign: TextAlign.center,
-                                  )),
-                                ],
-                                rows: _filteredProducts.map((product) {
-                                  return DataRow(
-                                    color:
-                                        WidgetStateProperty.all(Colors.white),
-                                    cells: [
-                                      DataCell(Text(product['itemId'].toString())),
-                                      DataCell(Text(product['itemName'].toString())),
-                                      DataCell(Row(
-                                        children: [
-                                          Text(product['quantity'].toString()),
-                                          SizedBox(width: 5),
-                                          Text(product['measureUnit'] ?? ''),
-                                        ],
-                                      )),
-                                      DataCell(Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12, vertical: 6),
-                                        decoration: BoxDecoration(
-                                          color: getStatusColor(
-                                              product['status'] ?? ''),
-                                          borderRadius: BorderRadius.circular(25),
-                                        ),
-                                        child: Text(
-                                          product['status'] ?? '',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )),
-                                      DataCell(InkWell(
-                                        onTap: () async {
-                                          final String type = product['type'] ?? '';
-                                          if (type == 'resurs') {
-                                            final bool? result = await showDialog(
-                                              context: context,
-                                              builder: (context) => PopupSirovina(
-                                                sirovinaData: product,
-                                              ),
-                                            );
-                                            if (result == true) {
-                                              setState(() {
-                                                searchProducts();
-                                              });
-                                            }
-                                          } else if (type == 'proizvod') {
-                                            final bool? result = await showDialog(
-                                              context: context,
-                                              builder: (context) => PopupProduct(
-                                                product: product,
-                                              ),
-                                            );
-                                            if (result == true) {
-                                              setState(() {
-                                                searchProducts();
-                                              });
-                                            }
-                                          }
-                                        },
-                                        child: Text(
-                                          'Uredi',
-                                          style: TextStyle(
-                                            decoration: TextDecoration.underline,
+                              child: SingleChildScrollView(
+                                child: DataTable(
+                                  headingRowColor:
+                                      WidgetStateProperty.all(Color(0xffF9FAFB)),
+                                  columns: const [
+                                    DataColumn(
+                                        label: Text(
+                                      'ID Proizvoda',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    DataColumn(
+                                        label: Text(
+                                      'Naziv proizvoda',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    DataColumn(
+                                        label: Text(
+                                      'Količina',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    DataColumn(
+                                        label: Text(
+                                      'Status',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                    DataColumn(
+                                        label: Text(
+                                      'Akcija',
+                                      textAlign: TextAlign.center,
+                                    )),
+                                  ],
+                                  rows: _filteredProducts.map((product) {
+                                    return DataRow(
+                                      color:
+                                          WidgetStateProperty.all(Colors.white),
+                                      cells: [
+                                        DataCell(Text(product['itemId'].toString())),
+                                        DataCell(Text(product['itemName'].toString())),
+                                        DataCell(Row(
+                                          children: [
+                                            Text(product['quantity'].toString()),
+                                            SizedBox(width: 5),
+                                            Text(product['measureUnit'] ?? ''),
+                                          ],
+                                        )),
+                                        DataCell(Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12, vertical: 6),
+                                          decoration: BoxDecoration(
+                                            color: getStatusColor(
+                                                product['status'] ?? ''),
+                                            borderRadius: BorderRadius.circular(25),
                                           ),
-                                        ),
-                                      )),
-                                    ],
-                                  );
-                                }).toList(),
+                                          child: Text(
+                                            product['status'] ?? '',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                        DataCell(InkWell(
+                                          onTap: () async {
+                                            final String type = product['type'] ?? '';
+                                            if (type == 'resurs') {
+                                              final bool? result = await showDialog(
+                                                context: context,
+                                                builder: (context) => PopupSirovina(
+                                                  sirovinaData: product,
+                                                ),
+                                              );
+                                              if (result == true) {
+                                                setState(() {
+                                                  searchProducts();
+                                                });
+                                              }
+                                            } else if (type == 'proizvod') {
+                                              final bool? result = await showDialog(
+                                                context: context,
+                                                builder: (context) => PopupProduct(
+                                                  product: product,
+                                                ),
+                                              );
+                                              if (result == true) {
+                                                setState(() {
+                                                  searchProducts();
+                                                });
+                                              }
+                                            }
+                                          },
+                                          child: Text(
+                                            'Uredi',
+                                            style: TextStyle(
+                                              decoration: TextDecoration.underline,
+                                            ),
+                                          ),
+                                        )),
+                                      ],
+                                    );
+                                  }).toList(),
+                                ),
                               ),
                             ),
                           ),
