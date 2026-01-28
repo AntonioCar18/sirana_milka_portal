@@ -18,14 +18,12 @@ class _PartnersState extends State<Partners> {
 
   Future<void> fetchPartners() async {
     try {
-      String? token = AuthService.token!;
-      if (token != null) {
-        List<dynamic> fetchedPartners = await FetchPartners.getPartners(token);
-        if (mounted) {
-          setState(() {
-            partners = fetchedPartners;
-          });
-        }
+      String token = AuthService.token!;
+      List<dynamic> fetchedPartners = await FetchPartners.getPartners(token);
+      if (mounted) {
+        setState(() {
+          partners = fetchedPartners;
+        });
       }
     } catch (e) {
       debugPrint('Error loading partners: $e');
