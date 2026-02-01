@@ -89065,7 +89065,7 @@ default:return B.cV}},
 P(a){var s,r,q,p=this,o=null,n=A.bO(a,o,t.w).w.a.a,m=A.ad(4294440696),l=A.a_("Upravljanje zalihama i inventarom",o,o,o,A.aO(o,o,o,o,o,o,o,o,"Inter",o,o,n>1200?32:24,o,o,B.eO,o,o,!0,o,o,o,o,o,o,o,o),o,o),k=t.F,j=A.dc(o,o,o,new A.ak(A.ad(4278283445),k),o,o,o,o,o,o,o,o,o,o,o,o,new A.ak(new A.a6(50,25,50,25),t.WY),o,o,o,o,o,o,o,o),i=t.p
 j=A.df(A.b([l,A.eK(A.a_("+ Dodaj novi proizvod",o,o,o,A.aO(o,o,B.i,o,o,o,o,o,o,o,o,o,o,o,B.x,o,o,!0,o,o,o,o,o,o,o,o),o,o),o,new A.auh(p,a),j)],i),B.Q,B.dO,B.y,o)
 l=A.zU(B.Gd,o,o,o)
-l=A.df(A.b([A.dr(A.dF(p.e,A.dk(o,new A.ba(4,B.eq,B.q),o,new A.a6(0,20,0,20),o,o,o,o,!0,new A.ba(4,A.aJ(25),B.q),o,o,o,o,o,B.i,!0,o,o,o,B.i,new A.ba(4,A.aJ(25),B.q),o,o,o,o,o,o,o,o,o,"Unesite tra\u017eeni proizvod ili njegov ID",o,B.i,o,o,o,o,o,o,o,!0,!0,o,l,o,o,o,o,o,o,o,o,o,o,o,o),o,o,o,!1,new A.aui(p),!1,o))],i),B.Q,B.w,B.y,o)
+l=A.df(A.b([A.dr(A.dF(p.e,A.dk(o,new A.ba(4,B.eq,B.q),o,new A.a6(0,20,0,20),o,o,o,o,!0,new A.ba(4,A.aJ(25),B.q),o,o,o,o,o,B.i,!0,o,o,o,B.i,new A.ba(4,A.aJ(25),B.q),o,o,o,o,o,o,o,o,o,"Unesite tra\u017eeni proizvod ili sirovinu/ambala\u017eu",o,B.i,o,o,o,o,o,o,o,!0,!0,o,l,o,o,o,o,o,o,o,o,o,o,o,o),o,o,o,!1,new A.aui(p),!1,o))],i),B.Q,B.w,B.y,o)
 if(J.ib(p.r))k=A.dY(A.a_("Nema rezultata",o,o,o,A.aO(o,o,B.dy,o,o,o,o,o,o,o,o,18,o,o,o,o,o,!0,o,o,o,o,o,o,o,o),o,o),o,o)
 else{s=A.aJ(25)
 r=A.ad(4294572795)

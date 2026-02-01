@@ -176,7 +176,7 @@ class _StorageState extends State<Storage> {
                           controller: search,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(vertical: 20),
-                            hintText: 'Unesite traženi proizvod ili njegov ID',
+                            hintText: 'Unesite traženi proizvod ili sirovinu/ambalažu',
                             prefixIcon: Icon(Icons.search),
                             fillColor: Colors.white,
                             filled: true,
